@@ -10,8 +10,8 @@ type ring struct {
     node2slot map[string]int
 }
 
-func NerRing(slots int) *ring {
-    return &ring{
+func NewRing(slots int) *ring {
+    return &ring {
         totalSlot: slots,
         slot2node: make(map[int]string, slots),
         node2slot: make(map[string]int),
