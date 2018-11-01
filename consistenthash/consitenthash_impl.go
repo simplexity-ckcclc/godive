@@ -18,7 +18,7 @@ func NewRing(slots int) *ring {
     }
 }
 
-func GetNodeBySlot(ring *ring, hashSlot int) (string, error) {
+func (ring *ring) GetNodeBySlot(hashSlot int) (string, error) {
     if hashSlot < 0 || hashSlot >= ring.totalSlot {
         return "", errors.New("slot is invalid")
     }
@@ -38,12 +38,12 @@ func GetNodeBySlot(ring *ring, hashSlot int) (string, error) {
     return ring.slot2node[next], nil
 }
 
-func AddNode(ring *ring, slot int, node string) {
+func (ring *ring) AddNode(slot int, node string) {
     ring.slot2node[slot] = node
     ring.node2slot[node] = slot
 }
 
-func RemoveNode(ring *ring, node string) {
+func (ring *ring) RemoveNode(node string) {
     slot, ok := ring.node2slot[node]
     if ok {
         delete(ring.node2slot, node)
